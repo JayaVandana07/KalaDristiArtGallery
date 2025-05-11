@@ -1,0 +1,2051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kala Drishti | Art Gallery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #121212;
+            --secondary-color: #1e1e1e;
+            --accent-color: #d4af37;
+            --text-color: #e0e0e0;
+            --dark-gray: #333;
+            --light-gray: #555;
+            --transition: all 0.5s ease;
+            --border-color: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--primary-color);
+        }
+        
+        .signin-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+.signin-container {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 350px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+
+.signin-container h2 {
+  margin-bottom: 1rem;
+}
+
+.signin-container input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.signin-container button {
+  width: 100%;
+  padding: 10px;
+  background-color: #222;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.signin-container .switch-link {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: transparent;
+            color: var(--text-color);
+            border: 1px solid var(--accent-color);
+            border-radius: 0;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        .btn:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-accent {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-accent:hover {
+            background-color: transparent;
+            color: var(--accent-color);
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 60px;
+            text-align: center;
+            position: relative;
+            font-weight: 300;
+            letter-spacing: 3px;
+            color: var(--text-color);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 1px;
+            background-color: var(--accent-color);
+        }
+        
+        section {
+            padding: 100px 0;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: rgba(18, 18, 18, 0.95);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--text-color);
+            letter-spacing: 2px;
+        }
+        
+        .logo span {
+            color: var(--accent-color);
+        }
+        
+        .nav-links {
+            display: flex;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            font-weight: 300;
+            transition: var(--transition);
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--text-color);
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 300;
+            letter-spacing: 5px;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+        
+        /* Featured Artists */
+        .artists-section {
+            background-color: var(--secondary-color);
+        }
+        
+        .artists-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 40px;
+        }
+        
+        .artist-card {
+            background-color: var(--primary-color);
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+        
+        .artist-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .artist-img {
+            height: 320px;
+            overflow: hidden;
+        }
+        
+        .artist-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+            filter: grayscale(30%);
+        }
+        
+        .artist-card:hover .artist-img img {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+        }
+        
+        .artist-info {
+            padding: 25px;
+        }
+        
+        .artist-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+        
+        .artist-info p {
+            color: var(--light-gray);
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+        
+        .artist-social {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .artist-social i {
+            font-size: 1rem;
+            color: var(--light-gray);
+            transition: var(--transition);
+        }
+        
+        .artist-social i:hover {
+            color: var(--accent-color);
+        }
+        
+        /* Mood Based Art */
+        .mood-section {
+            background-color: var(--primary-color);
+        }
+        
+        .mood-selector {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 60px;
+        }
+        
+        .mood-btn {
+            padding: 10px 20px;
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+        
+        .mood-btn:hover, .mood-btn.active {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+        
+        .mood-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .art-item {
+            position: relative;
+            overflow: hidden;
+            height: 350px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .art-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+            filter: grayscale(30%);
+        }
+        
+        .art-item:hover img {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+        }
+        
+        .art-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+            padding: 25px;
+            color: var(--text-color);
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+        
+        .art-item:hover .art-overlay {
+            transform: translateY(0);
+        }
+        
+        .art-overlay h3 {
+            margin-bottom: 5px;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+        
+        .art-overlay p {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            color: var(--light-gray);
+        }
+        
+        .art-price {
+            font-weight: 400;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        /* Art Categories */
+        .categories-section {
+            background-color: var(--secondary-color);
+        }
+        
+        .categories-tabs {
+            display: flex;
+            justify-content: center;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 60px;
+        }
+        
+        .category-tab {
+            padding: 15px 30px;
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+        
+        .category-tab::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--accent-color);
+            transition: var(--transition);
+        }
+        
+        .category-tab:hover, .category-tab.active {
+            color: var(--accent-color);
+        }
+        
+        .category-tab.active::after {
+            width: 100%;
+        }
+        
+        .category-content {
+            display: none;
+        }
+        
+        .category-content.active {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        /* Auctions Section */
+        .auctions-section {
+            background-color: var(--primary-color);
+        }
+        
+        .auction-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 40px;
+        }
+        
+        .auction-item {
+            background-color: var(--secondary-color);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+        
+        .auction-img {
+            height: 280px;
+            overflow: hidden;
+        }
+        
+        .auction-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+            filter: grayscale(30%);
+        }
+        
+        .auction-item:hover .auction-img img {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+        }
+        
+        .auction-info {
+            padding: 25px;
+        }
+        
+        .auction-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+        
+        .auction-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            color: var(--light-gray);
+            font-size: 0.9rem;
+        }
+        
+        .auction-time {
+            color: var(--accent-color);
+            font-weight: 400;
+        }
+        
+        .bid-info {
+            margin-bottom: 20px;
+        }
+        
+        .current-bid {
+            font-weight: 400;
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+        }
+        
+        .bid-count {
+            color: var(--light-gray);
+            font-size: 0.9rem;
+        }
+        
+        .bid-form {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .bid-input {
+            flex: 1;
+            padding: 12px;
+            background-color: var(--primary-color);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+        }
+        
+        /* 360 Degree Viewer */
+        .viewer-section {
+            background-color: var(--secondary-color);
+            text-align: center;
+        }
+        
+        .viewer-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .artwork-viewer {
+            width: 100%;
+            height: 500px;
+            background-color: var(--primary-color);
+            overflow: hidden;
+            position: relative;
+            border: 1px solid var(--border-color);
+        }
+        
+        .artwork-viewer img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: var(--transition);
+        }
+        
+        .viewer-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 20px;
+        }
+        
+        .control-btn {
+            width: 50px;
+            height: 50px;
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-color);
+        }
+        
+        .control-btn:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+        
+        .artwork-info {
+            margin-top: 40px;
+        }
+        
+        .artwork-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+        
+        .artwork-info p {
+            color: var(--light-gray);
+            max-width: 600px;
+            margin: 0 auto 20px;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+        
+        /* Reviews Section */
+        .reviews-section {
+            background-color: var(--primary-color);
+        }
+        
+        .reviews-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .review-item {
+            background-color: var(--secondary-color);
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .review-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .reviewer-img {
+            width: 60px;
+            height: 60px;
+            overflow: hidden;
+            margin-right: 20px;
+        }
+        
+        .reviewer-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(30%);
+        }
+        
+        .reviewer-info h4 {
+            margin-bottom: 5px;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+        
+        .review-date {
+            color: var(--light-gray);
+            font-size: 0.9rem;
+        }
+        
+        .review-stars {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+        
+        .review-text {
+            color: var(--light-gray);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+        
+        .add-review {
+            background-color: var(--secondary-color);
+            padding: 30px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .add-review h3 {
+            margin-bottom: 25px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            font-size: 1.3rem;
+        }
+        
+        .review-form {
+            display: grid;
+            gap: 25px;
+        }
+        
+        .form-group {
+            display: grid;
+            gap: 10px;
+        }
+        
+        .form-group label {
+            font-weight: 400;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+        }
+        
+        .form-control {
+            padding: 12px;
+            background-color: var(--primary-color);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            width: 100%;
+        }
+        
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .rating-select {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .rating-option {
+            cursor: pointer;
+            color: var(--dark-gray);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+        
+        .rating-option:hover, .rating-option.selected {
+            color: var(--accent-color);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            padding: 80px 0 30px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            position: relative;
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 30px;
+            height: 1px;
+            background-color: var(--accent-color);
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            transition: var(--transition);
+            font-size: 0.95rem;
+            color: var(--light-gray);
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-color);
+            padding-left: 5px;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        
+        .social-icon:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+        
+        .footer-newsletter p {
+            margin-bottom: 25px;
+            color: var(--light-gray);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+        
+        .newsletter-form {
+            display: flex;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 12px;
+            background-color: var(--primary-color);
+            border: 1px solid var(--border-color);
+            border-right: none;
+            color: var(--text-color);
+        }
+        
+        .newsletter-btn {
+            background-color: transparent;
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 0 20px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .newsletter-btn:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+            color: var(--light-gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--primary-color);
+                flex-direction: column;
+                align-items: center;
+                padding: 40px 0;
+                transition: var(--transition);
+                border-top: 1px solid var(--border-color);
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .auction-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .categories-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .category-tab {
+                padding: 10px 15px;
+            }
+            
+            .artwork-viewer {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+     <div id="root"></div>
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">KALA<span>DRISHTI</span></a>
+            
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="#home">HOME</a></li>
+                <li><a href="#artists">ARTISTS</a></li>
+                <li><a href="#gallery">GALLERY</a></li>
+                <li><a href="#auctions">AUCTIONS</a></li>
+                <li><a href="#contact">CONTACT</a></li>
+                <li><a href="#cart">CART</a></li>
+                <li><a href="#signin">SIGNIN</a></li>
+                
+            </ul>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1>DISCOVER INDIAN ARTISTRY</h1>
+            <p>Explore a curated collection of artwork from talented Indian artists. Experience the rich cultural heritage and contemporary expressions through our carefully selected pieces.</p>
+            <a href="#gallery" class="btn">EXPLORE GALLERY</a>
+            <a href="#auctions" class="btn" style="margin-left: 15px;">CURRENT AUCTIONS</a>
+        </div>
+    </section>
+    
+    <!-- Featured Artists -->
+    <section id="artists" class="artists-section">
+        <div class="container">
+            <h2 class="section-title">FEATURED ARTISTS</h2>
+            
+            <div class="artists-grid">
+                <div class="artist-card">
+                    <div class="artist-img">
+                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Artist">
+                    </div>
+                    <div class="artist-info">
+                        <h3>PRIYA SHARMA</h3>
+                        <p>Contemporary | Madhubani</p>
+                        <p>Award-winning artist known for blending traditional Madhubani techniques with contemporary themes and social commentary.</p>
+                        <div class="artist-social">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="artist-card">
+                    <div class="artist-img">
+                        <img src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Artist">
+                    </div>
+                    <div class="artist-info">
+                        <h3>ARJUN PATEL</h3>
+                        <p>Minimalist | Digital</p>
+                        <p>Digital artist exploring the intersection of technology and traditional Indian art forms, creating minimalist interpretations of classical motifs.</p>
+                        <div class="artist-social">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-behance"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="artist-card">
+                    <div class="artist-img">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80" alt="Artist">
+                    </div>
+                    <div class="artist-info">
+                        <h3>MEERA DESAI</h3>
+                        <p>Classical | Tanjore</p>
+                        <p>Classically trained painter specializing in Tanjore paintings with gold leaf work and intricate detailing inspired by temple architecture.</p>
+                        <div class="artist-social">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-pinterest"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="artist-card">
+                    <div class="artist-img">
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Artist">
+                    </div>
+                    <div class="artist-info">
+                        <h3>VIKRAM SINGH</h3>
+                        <p>Urban | Contemporary</p>
+                        <p>Contemporary artist whose work addresses social issues through vibrant urban landscapes and scenes from modern Indian life.</p>
+                        <div class="artist-social">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-tiktok"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Mood Based Art -->
+    <section class="mood-section" id="gallery">
+        <div class="container">
+            <h2 class="section-title">ART BASED ON YOUR MOOD</h2>
+            
+            <div class="mood-selector">
+                <button class="mood-btn active" data-mood="all">ALL</button>
+                <button class="mood-btn" data-mood="calm">SERENE & PEACEFUL</button>
+                <button class="mood-btn" data-mood="energetic">VIBRANT</button>
+                <button class="mood-btn" data-mood="melancholic">CONTEMPLATIVE</button>
+                <button class="mood-btn" data-mood="joyful">CELEBRATORY</button>
+                <button class="mood-btn" data-mood="mysterious">MYSTICAL</button>
+            </div>
+            
+            <div class="mood-gallery">
+                <div class="art-item" data-mood="calm">
+                    <img src="https://i.pinimg.com/736x/c7/04/74/c70474e7bbdc16f233600a931f789f99.jpg">
+                    <div class="art-overlay">
+                        <h3>RIVER OF TRANQUILITY</h3>
+                        <p>By Meera Desai</p>
+                        <p class="art-price">₹85,000</p>
+                        <button class="btn">ADD TO CART</button>
+                    </div>
+                </div>
+                
+                <div class="art-item" data-mood="energetic">
+                    <img src="https://i.pinimg.com/736x/df/f1/74/dff1748cc79d11d56e08183eef8c2cdf.jpg" alt="Energetic Artwork">
+                    <div class="art-overlay">
+                        <h3>FESTIVAL OF COLORS</h3>
+                        <p>By Vikram Singh</p>
+                        <p class="art-price">₹65,000</p>
+                        <button class="btn">ADD TO CART</button>
+                    </div>
+                </div>
+                
+                <div class="art-item" data-mood="melancholic">
+                    <img src="https://i.pinimg.com/736x/5c/ad/e3/5cade306601e978d508438cf38fa397c.jpg" alt="Melancholic Artwork">
+                    <div class="art-overlay">
+                        <h3>MONSOON MEMORIES</h3>
+                        <p>By Priya Sharma</p>
+                        <p class="art-price">₹95,000</p>
+                        <button class="btn">ADD TO CART</button>
+                    </div>
+                </div>
+                
+                <div class="art-item" data-mood="joyful">
+                    <img src="https://i.pinimg.com/736x/72/b0/ff/72b0ff87984783ce8d0c2198a38b3229.jpg" alt="Joyful Artwork">
+                    <div class="art-overlay">
+                        <h3>DANCE OF LIFE</h3>
+                        <p>By Arjun Patel</p>
+                        <p class="art-price">₹75,000</p>
+                        <button class="btn">ADD TO CART</button>
+                    </div>
+                </div>
+                
+                <div class="art-item" data-mood="mysterious">
+                    <img src="https://i.pinimg.com/736x/c5/4c/55/c54c552359248a78859fc35011d23104.jpg" alt="Mysterious Artwork">
+                    <div class="art-overlay">
+                        <h3>ANCIENT WHISPERS</h3>
+                        <p>By Meera Desai</p>
+                        <p class="art-price">₹1,20,000</p>
+                        <button class="btn">ADD TO CART</button>
+                    </div>
+                </div>
+                
+                <div class="art-item" data-mood="calm">
+                    <img src="https://i.pinimg.com/736x/61/cf/88/61cf881071b5f3ba9c015d2b83ac593b.jpg" alt="Calm Artwork">
+                    <div class="art-overlay">
+                        <h3>HIMALAYAN SERENITY</h3>
+                        <p>By Vikram Singh</p>
+                        <p class="art-price">₹90,000</p>
+                        <button class="btn">ADD TO CART</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Art Categories -->
+    <section id="categories" class="categories-section">
+        <div class="container">
+            <h2 class="section-title">EXPLORE ART</h2>
+            
+            <div class="categories-tabs">
+                <div class="category-tab active" data-category="modern">MODERN</div>
+                <div class="category-tab" data-category="ancient">TRADITIONAL</div>
+                <div class="category-tab" data-category="minimalist">MINIMALIST</div>
+                <div class="category-tab" data-category="abstract">ABSTRACT</div>
+                <div class="category-tab" data-category="digital">DIGITAL</div>
+            </div>
+            
+            <div class="category-content active" data-category="modern">
+                <div class="art-item">
+                    <img src="https://i.pinimg.com/736x/3b/ab/4e/3bab4e960d60b72ec6a1a670a4bc26f9.jpg">
+                    <div class="art-overlay">
+                        <h3>URBAN REFLECTIONS</h3>
+                        <p>By Priya Sharma</p>
+                        <p class="art-price">₹1,45,000</p>
+                        <button class="btn">ADD TO CART</button>
+                    </div>
+                </div>
+                
+                <div class="art-item">
+                    <img src="https://i.pinimg.com/736x/af/57/93/af579381156b234ae9753b09e2fbabe7.jpg" alt="Modern Art">
+                    <div class="art-overlay">
+                        <h3>CHROMATIC FUSION</h3>
+                        <p>By Arjun Patel</p>
+                        <p class="art-price">₹1,25,000</p>
+                        <button class="btn">ADD TO CART</button>
+                    </div>
+                </div>
+                
+                <div class="art-item">
+                    <img src="https://i.pinimg.com/736x/a8/35/05/a8350585bc53339aea0d766ce4369d52.jpg" alt="Modern Art">
+                    <div class="art-overlay">
+                        <h3>METROPOLITAN DREAMS</h3>
+                        <p>By Vikram Singh</p>
+                        <p class="art-price">₹1,35,000</p>
+                        <button class="btn">ADD TO CART</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="category-content" data-category="ancient">
+                <div class="art-item">
+                    <img src="https://i.pinimg.com/736x/81/3a/27/813a278098fd77a8bf72c843f9cb8124.jpg" alt="Traditional Art">
+                    <div class="art-overlay">
+                        <h3>TEMPLE NARRATIVES</h3>
+                        <p>By Meera Desai</p>
+                        <p class="art-price">₹2,15,000</p>
+                        <button class="btn">ADD TO CART</button>
+                    </div>
+                </div>
+                
+                <div class="art-item">
+                    <img src="https://i.pinimg.com/736x/58/d7/be/58d7be72cf442eb69624eaf18c60191d.jpg" alt="Traditional Art">
+                    <div class="art-overlay">
+                        <h3>MYTHICAL LEGENDS</h3>
+                        <p>By Priya Sharma</p>
+                        <p class="art-price">₹1,85,000</p>
+                        <button class="btn">ADD TO CART</button>
+                    </div>
+                </div>
+                
+                <div class="art-item">
+                    <img src="https://i.pinimg.com/736x/0a/db/38/0adb3804373023b481fd17ecd47bd04a.jpg" alt="Traditional Art">
+                    <div class="art-overlay">
+                        <h3>SACRED RITUALS</h3>
+                        <p>By Arjun Patel</p>
+                        <p class="art-price">₹1,95,000</p>
+                        <button class="btn">ADD TO CART</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="category-content" data-category="minimalist">
+                <div class="art-item">
+                    <img src="https://i.pinimg.com/736x/44/eb/ad/44ebad14ffc3e79adc9d8a112a31b934.jpg" alt="Minimalist Art">
+                    <div class="art-overlay">
+                        <h3>GEOMETRIC HARMONY</h3>
+                        <p>By Arjun Patel</p>
+                        <p class="art-price">₹95,000</p>
+                        <button class="btn">ADD TO CART</button>
+                    </div>
+                </div>
+                
+                <div class="art-item">
+                    <img src="https://i.pinimg.com/736x/eb/e5/d9/ebe5d987de8030863294f1c6305a5d91.jpg" alt="Minimalist Art">
+                    <div class="art-overlay">
+                        <h3>SUBTLE CONTRASTS</h3>
+                        <p>By Vikram Singh</p>
+                        <p class="art-price">₹85,000</p>
+                        <button class="btn">ADD TO CART</button>
+                    </div>
+                </div>
+                
+                <div class="art-item">
+                    <img src="https://i.pinimg.com/736x/df/89/b1/df89b1e39c040aefa9b95058f8c97dd8.jpg" alt="Minimalist Art">
+                    <div class="art-overlay">
+                        <h3>ELEGANT SIMPLICITY</h3>
+                        <p>By Priya Sharma</p>
+                        <p class="art-price">₹1,10,000</p>
+                        <button class="btn">ADD TO CART</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="category-content" data-category="abstract">
+                <div class="art-item">
+                    <img src="https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80" alt="Abstract Art">
+                    <div class="art-overlay">
+                        <h3>CHAOTIC SERENITY</h3>
+                        <p>By Priya Sharma</p>
+                        <p class="art-price">₹1,40,000</p>
+                        <button class="btn">ADD TO CART</button>
+                    </div>
+                </div>
+                
+                <div class="art-item">
+                    <img src="https://images.unsplash.com/photo-1543857778-c4a1a3e0b2eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Abstract Art">
+                    <div class="art-overlay">
+                        <h3>EMOTIONAL WAVES</h3>
+                        <p>By Meera Desai</p>
+                        <p class="art-price">₹1,30,000</p>
+                        <button class="btn">ADD TO CART</button>
+                    </div>
+                </div>
+                
+                <div class="art-item">
+                    <img src="https://images.unsplash.com/photo-1515405295579-ba7b45403062?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" alt="Abstract Art">
+                    <div class="art-overlay">
+                        <h3>CONCEPTUAL FRAGMENTS</h3>
+                        <p>By Arjun Patel</p>
+                        <p class="art-price">₹1,50,000</p>
+                        <button class="btn">ADD TO CART</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="category-content" data-category="digital">
+                <div class="art-item">
+                    <img src="https://i.pinimg.com/736x/9b/af/de/9bafde4d4f08948f81dc89b5758bc6ee.jpg" alt="Digital Art">
+                    <div class="art-overlay">
+                        <h3>VIRTUAL REALITY</h3>
+                        <p>By Arjun Patel</p>
+                        <p class="art-price">₹1,15,000</p>
+                        <button class="btn">ADD TO CART</button>
+                    </div>
+                </div>
+                
+                <div class="art-item">
+                    <img src="https://i.pinimg.com/736x/7a/13/84/7a1384628b7daaf10f83fdc3b63fb828.jpg" alt="Digital Art">
+                    <div class="art-overlay">
+                        <h3>CYBERNETIC DREAMS</h3>
+                        <p>By Vikram Singh</p>
+                        <p class="art-price">₹1,25,000</p>
+                        <button class="btn">ADD TO CART</button>
+                    </div>
+                </div>
+                
+                <div class="art-item">
+                    <img src="https://i.pinimg.com/736x/a7/8b/c9/a78bc94c246751ac09d69cf25ae51374.jpg" alt="Digital Art">
+                    <div class="art-overlay">
+                        <h3>FUTURISTIC LANDSCAPES</h3>
+                        <p>By Priya Sharma</p>
+                        <p class="art-price">₹1,35,000</p>
+                        <button class="btn">ADD TO CART</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Auctions Section -->
+    <section class="auctions-section" id="auctions">
+        <div class="container">
+            <h2 class="section-title">LIVE AUCTIONS</h2>
+            
+            <div class="auction-grid">
+                <div class="auction-item">
+                    <div class="auction-img">
+                        <img src="https://i.pinimg.com/736x/c1/f3/f7/c1f3f7851c5aac24bbc92b48c5ec0739.jpg">
+                    </div>
+                    <div class="auction-info">
+                        <h3>COSMIC RHYTHM</h3>
+                        <div class="auction-meta">
+                            <span>By Priya Sharma</span>
+                            <span class="auction-time" data-countdown="2023-12-31T23:59:59">23h 45m 30s</span>
+                        </div>
+                        <div class="bid-info">
+                            <div class="current-bid">Current Bid: ₹1,65,000</div>
+                            <div class="bid-count">23 bids so far</div>
+                        </div>
+                        <form class="bid-form">
+                            <input type="number" class="bid-input" placeholder="Enter your bid (₹)" min="170000" step="5000">
+                            <button type="submit" class="btn">PLACE BID</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="auction-item">
+                    <div class="auction-img">
+                        <img src="https://i.pinimg.com/736x/d0/52/01/d05201668d1029989677d7c21cc1eb1c.jpg">
+                    </div>
+                    <div class="auction-info">
+                        <h3>ETHEREAL LANDSCAPE</h3>
+                        <div class="auction-meta">
+                            <span>By Arjun Patel</span>
+                            <span class="auction-time" data-countdown="2023-12-25T23:59:59">4d 12h 20m</span>
+                        </div>
+                        <div class="bid-info">
+                            <div class="current-bid">Current Bid: ₹1,25,000</div>
+                            <div class="bid-count">15 bids so far</div>
+                        </div>
+                        <form class="bid-form">
+                            <input type="number" class="bid-input" placeholder="Enter your bid (₹)" min="130000" step="5000">
+                            <button type="submit" class="btn">PLACE BID</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="auction-item">
+                    <div class="auction-img">
+                        <img src="https://i.pinimg.com/736x/2c/ce/ed/2cceedc452eabb34a05b391737281639.jpg">
+                    </div>
+                    <div class="auction-info">
+                        <h3>MYSTICAL PORTAL</h3>
+                        <div class="auction-meta">
+                            <span>By Meera Desai</span>
+                            <span class="auction-time" data-countdown="2023-12-20T23:59:59">1d 8h 15m</span>
+                        </div>
+                        <div class="bid-info">
+                            <div class="current-bid">Current Bid: ₹2,15,000</div>
+                            <div class="bid-count">28 bids so far</div>
+                        </div>
+                        <form class="bid-form">
+                            <input type="number" class="bid-input" placeholder="Enter your bid (₹)" min="220000" step="5000">
+                            <button type="submit" class="btn">PLACE BID</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 360 Degree Artwork Viewer -->
+    <section class="viewer-section" id="viewer">
+        <div class="container">
+            <h2 class="section-title">EXPERIENCE ART IN 360°</h2>
+            
+            <div class="viewer-container">
+                <div class="artwork-viewer">
+                    <img src="https://i.pinimg.com/736x/af/57/93/af579381156b234ae9753b09e2fbabe7.jpg" alt="360 Degree Artwork" id="viewer-img">
+                </div>
+                
+                <div class="viewer-controls">
+                    
+                    <button class="control-btn" id="zoom-in">
+                        <i class="fas fa-search-plus"></i>
+                    </button>
+                    <button class="control-btn" id="zoom-out">
+                        <i class="fas fa-search-minus"></i>
+                    </button>
+                </div>
+                
+                <div class="artwork-info">
+                    <h3>CHROMATIC FUSION</h3>
+                    <p>By Arjun Patel</p>
+                    <p>This vibrant piece explores the relationship between traditional Indian rhythms and cosmic energy. The artist uses a unique technique that creates depth and movement, drawing inspiration from classical dance forms and celestial patterns.</p>
+                    <p class="art-price">₹1,25,000</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Reviews Section -->
+    <section class="reviews-section" id="reviews">
+        <div class="container">
+            <h2 class="section-title">COMMUNITY REVIEWS</h2>
+            
+            <div class="reviews-container">
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-img">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Reviewer">
+                        </div>
+                        <div class="reviewer-info">
+                            <h4>ANJALI MEHTA</h4>
+                            <div class="review-date">January 15, 2025</div>
+                        </div>
+                    </div>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="review-text">
+                        <p>I purchased "Cosmic Rhythm" by Priya Sharma and I'm absolutely in love with it. The colors are even more vibrant in person, and it has become the focal point of my living room. The shipping was fast and the artwork was perfectly packaged with traditional Indian materials.</p>
+                    </div>
+                </div>
+                
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-img">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Reviewer">
+                        </div>
+                        <div class="reviewer-info">
+                            <h4>RAHUL KAPOOR</h4>
+                            <div class="review-date">September 28, 2024</div>
+                        </div>
+                    </div>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="review-text">
+                        <p>I've been following Arjun Patel's work for years and finally purchased one of his digital pieces. The quality of the print is excellent, and the customer service was top-notch. The only reason for 4 stars instead of 5 is that the colors are slightly different from what I saw online.</p>
+                    </div>
+                </div>
+                
+                <div class="add-review">
+                    <h3>WRITE A REVIEW</h3>
+                    <form class="review-form">
+                        <div class="form-group">
+                            <label for="review-name">Your Name</label>
+                            <input type="text" id="review-name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="review-email">Email</label>
+                            <input type="email" id="review-email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Rating</label>
+                            <div class="rating-select">
+                                <div class="rating-option" data-rating="1"><i class="far fa-star"></i></div>
+                                <div class="rating-option" data-rating="2"><i class="far fa-star"></i></div>
+                                <div class="rating-option" data-rating="3"><i class="far fa-star"></i></div>
+                                <div class="rating-option" data-rating="4"><i class="far fa-star"></i></div>
+                                <div class="rating-option" data-rating="5"><i class="far fa-star"></i></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="review-text">Your Review</label>
+                            <textarea id="review-text" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">SUBMIT REVIEW</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Online Art Gallery</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #e0e0e0;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #ffffff;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .art-card {
+      background-color: #1e1e1e;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .art-card img {
+      width: 55%;
+      border-radius: 7px;
+    }
+
+    .art-card h3 {
+      margin: 10px 0 5px;
+      font-size: 1.1rem;
+    }
+
+    .art-card p {
+      margin: 0;
+      font-size: 0.95rem;
+    }
+
+    .art-card button {
+      margin-top: 10px;
+      padding: 8px 12px;
+      background-color: whitesmoke;
+      color: black;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .cart {
+      margin-top: 40px;
+      border-top: 1px solid #333;
+      padding-top: 20px;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+    }
+
+    .checkout-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: whitesmoke;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Art Gallery</h1>
+
+  <div class="gallery" id="gallery">
+    <div class="art-card">
+      <img src="https://i.pinimg.com/736x/72/9e/72/729e72ce05e803efcd7bfb70f158eab8.jpg" alt="Modern Art">
+      <h3>Modern Art</h3>
+      <p>Price: ₹25,000</p>
+      <button onclick="addToCart('Modern Art', 25000)">Add to Cart</button>
+    </div>
+
+    <div class="art-card">
+      <img src="https://i.pinimg.com/736x/81/3a/27/813a278098fd77a8bf72c843f9cb8124.jpg" alt="Ancient Art">
+      <h3>Ancient Art</h3>
+      <p>Price: ₹20,000</p>
+      <button onclick="addToCart('Ancient Art', 20000)">Add to Cart</button>
+    </div>
+
+    <div class="art-card">
+      <img src="https://i.pinimg.com/736x/eb/e5/d9/ebe5d987de8030863294f1c6305a5d91.jpg" alt="Minimal Art">
+      <h3>Minimalistic Art</h3>
+      <p>Price: ₹35,500</p>
+      <button onclick="addToCart('Minimalistic Art', 35500)">Add to Cart</button>
+    </div>
+  </div>
+
+  <div class="cart" id="cartSection">
+    <h2>Your Cart</h2>
+    <div id="cartItems"></div>
+    <h3 id="totalPrice">Total: ₹0</h3>
+    <button class="checkout-btn" onclick="checkout()">Pay Now</button>
+  </div>
+
+  <script>
+    let cart = [];
+
+    function addToCart(title, price) {
+      cart.push({ title, price });
+      renderCart();
+      alert(`"${title}" added to cart.`);
+    }
+
+    function renderCart() {
+      const cartItemsDiv = document.getElementById('cartItems');
+      const totalDiv = document.getElementById('totalPrice');
+      cartItemsDiv.innerHTML = '';
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        total += item.price;
+        cartItemsDiv.innerHTML += `
+          <div class="cart-item">
+            <span>${item.title} - ₹${item.price.toLocaleString('en-IN')}</span>
+            <button onclick="removeFromCart(${index})">Remove</button>
+          </div>
+        `;
+      });
+
+      totalDiv.innerText = `Total: ₹${total.toLocaleString('en-IN')}`;
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      renderCart();
+    }
+
+    function checkout() {
+      if (cart.length === 0) {
+        alert("Your cart is empty.");
+        return;
+      }
+      const total = cart.reduce((sum, item) => sum + item.price, 0);
+      alert(`Transaction successful! You paid ₹${total.toLocaleString('en-IN')}`);
+      cart = [];
+      renderCart();
+    }
+    <body>
+
+
+</body>
+
+    // Optional: Load cart from localStorage
+    // window.onload = () => {
+    //   const savedCart = localStorage.getItem('galleryCart');
+    //   if (savedCart) {
+    //     cart = JSON.parse(savedCart);
+    //     renderCart();
+    //   }
+    // };
+  </script>
+
+</body>
+</html>
+
+
+    
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>ABOUT KALA DRISHTI</h3>
+                    <p>Kala Drishti is a premier online Indian art gallery connecting artists with art enthusiasts worldwide. We curate exceptional artwork and provide a platform for Indian artists to showcase their talent and cultural heritage.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>QUICK LINKS</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#artists">Artists</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#auctions">Auctions</a></li>
+                        <li><a href="#exhibitions">Exhibitions</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#signin">SignIn</a></li>
+                        <li><a href="#cart">Cart</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>CUSTOMER SUPPORT</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Payment Methods</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col footer-newsletter">
+                    <h3>NEWSLETTER</h3>
+                    <p>Subscribe to our newsletter to receive updates on new artwork, exhibitions, and special events.</p>
+                    <form class="newsletter-form">
+                        <input type="email" class="newsletter-input" placeholder="Your email address" required>
+                        <button type="submit" class="newsletter-btn"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Kala Drishti. All rights reserved.</p>
+            </div>
+            <div class="signin-modal" id="signinModal">
+  <div class="signin-container">
+    <form id="signinForm">
+      <input type="email" placeholder="Email" required />
+      <input type="password" placeholder="Password" required />
+      <button type="submit">Sign In</button>
+      <p class="switch-link">Don't have an account? <a href="#signup">Sign Up</a></p>
+    </form>
+    <button class="close-btn" onclick="closeModal()">✖</button>
+  </div>
+</div>
+
+        </div>
+    </footer>
+    <script></script>
+    <script>
+  // Open modal on SignIn link click
+  document.querySelector('a[href="#signin"]').addEventListener('click', (e) => {
+    e.preventDefault();
+    document.getElementById('signinModal').style.display = 'block';
+  });
+
+  // Close modal
+  function closeModal() {
+    document.getElementById('signinModal').style.display = 'none';
+  }
+
+  // Optional: Close when clicking outside the modal
+  window.addEventListener('click', (e) => {
+    const modal = document.getElementById('signinModal');
+    if (e.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+</script>
+<style>
+.signin-container {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.signin-container h2 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.signin-container input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.signin-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #222;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.signin-container button:hover {
+    background-color: #444;
+}
+
+.signin-container .switch-link {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.signin-container .switch-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.signin-container .switch-link a:hover {
+    text-decoration: underline;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #333;
+}
+
+.close-btn:hover {
+    color: #555;
+}
+</style>
+</script>
+<!-- Sign Up Modal -->
+<div class="signin-modal" id="signupModal">
+    <div class="signin-container">
+        <form id="signupForm">
+            <input type="text" placeholder="Full Name" required />
+            <input type="email" placeholder="Email" required />
+            <input type="password" placeholder="Password" required />
+            <input type="password" placeholder="Confirm Password" required />
+            <button type="submit">Sign Up</button>
+            <p class="switch-link">Already have an account? <a href="#signin">Sign In</a></p>
+        </form>
+        <button class="close-btn" onclick="closeSignupModal()">✖</button>
+    </div>
+</div>
+
+<!-- Forgot Password Modal -->
+<div class="signin-modal" id="forgotPasswordModal">
+    <div class="signin-container">
+        <h2>Forgot Password</h2>
+        <form id="forgotPasswordForm">
+            <input type="email" placeholder="Enter your email" required />
+            <button type="submit">Reset Password</button>
+            <p class="switch-link"><a href="#signin">Back to Sign In</a></p>
+        </form>
+        <button class="close-btn" onclick="closeForgotPasswordModal()">✖</button>
+    </div>
+</div>
+
+<script>
+    // Open Sign Up Modal
+    document.querySelector('a[href="#signup"]').addEventListener('click', (e) => {
+        e.preventDefault();
+        document.getElementById('signupModal').style.display = 'block';
+    });
+
+    // Close Sign Up Modal
+    function closeSignupModal() {
+        document.getElementById('signupModal').style.display = 'none';
+    }
+
+    // Open Forgot Password Modal
+    document.querySelector('a[href="#forgotPassword"]').addEventListener('click', (e) => {
+        e.preventDefault();
+        document.getElementById('forgotPasswordModal').style.display = 'block';
+    });
+
+    // Close Forgot Password Modal
+    function closeForgotPasswordModal() {
+        document.getElementById('forgotPasswordModal').style.display = 'none';
+    }
+
+    // Optional: Close modals when clicking outside
+    window.addEventListener('click', (e) => {
+        const signupModal = document.getElementById('signupModal');
+        const forgotPasswordModal = document.getElementById('forgotPasswordModal');
+        if (e.target === signupModal) {
+            signupModal.style.display = 'none';
+        }
+        if (e.target === forgotPasswordModal) {
+            forgotPasswordModal.style.display = 'none';
+        }
+    });
+</script>
+</script>
+<script>
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Mood Based Art Filtering
+        const moodBtns = document.querySelectorAll('.mood-btn');
+        const artItems = document.querySelectorAll('.mood-gallery .art-item');
+        
+        moodBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                moodBtns.forEach(b => b.classList.remove('active'));
+                
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                // Get the mood data attribute
+                const mood = btn.getAttribute('data-mood');
+                
+                // Filter the art items
+                artItems.forEach(item => {
+                    if (mood === 'all' || item.getAttribute('data-mood') === mood) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Art Categories Tabs
+        const categoryTabs = document.querySelectorAll('.category-tab');
+        const categoryContents = document.querySelectorAll('.category-content');
+        
+        categoryTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs
+                categoryTabs.forEach(t => t.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Get the category data attribute
+                const category = tab.getAttribute('data-category');
+                
+                // Show the corresponding content
+                categoryContents.forEach(content => {
+                    if (content.getAttribute('data-category') === category) {
+                        content.classList.add('active');
+                    } else {
+                        content.classList.remove('active');
+                    }
+                });
+            });
+        });
+        
+        // Auction Countdown Timer
+        const auctionTimers = document.querySelectorAll('.auction-time');
+        
+        function updateTimers() {
+            auctionTimers.forEach(timer => {
+                const endTime = new Date(timer.getAttribute('data-countdown')).getTime();
+                const now = new Date().getTime();
+                const timeLeft = endTime - now;
+                
+                if (timeLeft > 0) {
+                    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                    
+                    let timeString = '';
+                    if (days > 0) timeString += days + 'd ';
+                    timeString += hours + 'h ' + minutes + 'm ' + seconds + 's';
+                    
+                    timer.textContent = timeString;
+                } else {
+                    timer.textContent = 'Auction Ended';
+                    timer.style.color = '#777';
+                }
+            });
+        }
+        
+        // Update timers every second
+        setInterval(updateTimers, 1000);
+        updateTimers(); // Initial update
+        
+        // 360 Degree Artwork Viewer
+        const viewerImg = document.getElementById('viewer-img');
+        const rotateLeft = document.getElementById('rotate-left');
+        const rotateRight = document.getElementById('rotate-right');
+        const zoomIn = document.getElementById('zoom-in');
+        const zoomOut = document.getElementById('zoom-out');
+        
+        // Array of images for 360 view simulation
+        const viewImages = [
+            ''
+        ];
+        
+        let currentImageIndex = 0;
+        let currentZoom = 1;
+        
+        // Rotate left
+        rotateLeft.addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex - 1 + viewImages.length) % viewImages.length;
+            viewerImg.src = viewImages[currentImageIndex];
+        });
+        
+        // Rotate right
+        rotateRight.addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex + 1) % viewImages.length;
+            viewerImg.src = viewImages[currentImageIndex];
+        });
+        
+        // Zoom in
+        zoomIn.addEventListener('click', () => {
+            if (currentZoom < 2) {
+                currentZoom += 0.1;
+                viewerImg.style.transform = `scale(${currentZoom})`;
+            }
+        });
+        
+        // Zoom out
+        zoomOut.addEventListener('click', () => {
+            if (currentZoom > 0.5) {
+                currentZoom -= 0.1;
+                viewerImg.style.transform = `scale(${currentZoom})`;
+            }
+        });
+        
+        
+        // Rating Selection
+        const ratingOptions = document.querySelectorAll('.rating-option');
+        
+        ratingOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const rating = option.getAttribute('data-rating');
+                
+                // Reset all ratings
+                ratingOptions.forEach(opt => {
+                    opt.classList.remove('selected');
+                    opt.innerHTML = '<i class="far fa-star"></i>';
+                });
+                
+                // Set selected ratings
+                for (let i = 0; i < rating; i++) {
+                    ratingOptions[i].classList.add('selected');
+                    ratingOptions[i].innerHTML = '<i class="fas fa-star"></i>';
+                }
+            });
+        });
+        
+        
+        // Form Submissions
+        const bidForms = document.querySelectorAll('.bid-form');
+        const reviewForm = document.querySelector('.review-form');
+        const newsletterForm = document.querySelector('.newsletter-form');
+        
+        // Prevent default form submissions and show success message
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            alert('Thank you! Your submission has been received.');
+            e.target.reset();
+        }
+        
+       bidForms.forEach(form => {
+            form.addEventListener('submit', handleFormSubmit);
+        });
+        
+        if (reviewForm) {
+            reviewForm.addEventListener('submit', handleFormSubmit);
+        }
+        
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', handleFormSubmit);
+        }
+        </script>
+    
+</body>
+</html>
