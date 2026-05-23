@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd /Users/sri/Documents/Candy/KalaDristiArtGallery && for f in *.md; do [ -f \"$f\" ] && echo \"=== $f ===\"  && cat \"$f\"; done | jq -Rs '{\"hookSpecificOutput\": {\"hookEventName\": \"SessionStart\", \"additionalContext\": (\"Project MD files:\\n\" + .)}}'",
+            "statusMessage": "Reading project MD files..."
+          }
+        ]
+      }
+    ]
+  }
+}
